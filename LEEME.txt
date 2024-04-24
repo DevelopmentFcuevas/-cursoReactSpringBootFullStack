@@ -3,8 +3,7 @@
 3) Agregar valores al application.properties
 4) Inicializar para probar si levanta sin ningun problema el proyecto.
 5) Crear la estructura de paquetes del proyecto.
-
-6) Creacion de las Entidades(Usuario, Producto, Orden, DetalleOrden)
+6) Creacion de las Entidades
 
 7) Versionamiento del Proyecto:
 Git
