@@ -1,0 +1,36 @@
+1) Creacion de la Base de datos.
+2) Creacion del Proyecto Spring Boot.
+3) Agregar valores al application.properties
+4) Inicializar para probar si levanta sin ningun problema el proyecto.
+5) Crear la estructura de paquetes del proyecto.
+
+6) Creacion de las Entidades(Usuario, Producto, Orden, DetalleOrden)
+
+7) Versionamiento del Proyecto:
+Git
+Abrir una terminal y situarse en la raiz del proyecto y inicializar con git.
+$ git init
+$ git status
+$ git add .
+$ git commit -m "Creacion de la estructura del proyecto y las clases model"
+$ git status
+$ git branch
+Crear una nueva rama a partir de la que se creo por defecto, por ejemplo:
+$ git checkout -b "main"
+Visualizar si se creo la nueva rama y si ya estamos posicionados en la misma:
+$ git branch
+GitHub
+Crear en el Github un nuevo repositorio. El nombre debe ser igual al proyecto que acabamos de versionar.
+Conectar repositorio local con el nuevo repositorio en Github
+Como ya se creo un proyecto y un repositorio local, entonces añadir al Github:
+$ git remote add origin <nombreRepositorioGithub>
+$ git remote add origin https://github.com/fcuevas/repoJava.git
+$ git branch -M main
+$ git branch
+$ git push -u origin <nombreRama>
+$ git push -u origin main
+Ir hasta el repositorio en GitHub y actualizar la pagina completa para saber si se actualizo con los cambios enviados.
+
+
+
+
