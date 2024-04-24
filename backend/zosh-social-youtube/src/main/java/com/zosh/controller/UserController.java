@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -30,41 +31,55 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getUsers() {
-        List<User> users = new ArrayList<>();
-        User user1 = new User(1L, "code", "zosh", "codewithzosh@gmail.com", "123");
-        users.add(user1);
+        List<User> users = repository.findAll();
         return users;
     }
 
     @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable("userId") Long id) {
-        User user1 = new User(1L, "code", "zosh", "codewithzosh@gmail.com", "123");
-        user1.setId(id);
-        return user1;
+    public User getUserById(@PathVariable("userId") Long id) throws Exception {
+        Optional<User> user = repository.findById(id);
+        if (user.isPresent()) {
+           return user.get();
+        }
+        throw new Exception("user not exist with userId: " + id);
     }
 
 
+    @PutMapping("/users/{userId}")
+    public User updateUser(@RequestBody User user, @PathVariable Long userId) throws Exception {
+        //User user1 = new User(1L, "code", "zosh", "codewithzosh@gmail.com", "123");
+        Optional<User> user1 = repository.findById(userId);
+        if (user1.isEmpty()) {
+            throw new Exception("user not exist with userId: " + userId);
+        }
 
-    @PutMapping("/users")
-    public User updateUser(@RequestBody User user) {
-        User user1 = new User(1L, "code", "zosh", "codewithzosh@gmail.com", "123");
+        User oldUser = user1.get();
+
         if (user.getFirstName() != null) {
-            user1.setFirstName(user.getFirstName());
+            oldUser.setFirstName(user.getFirstName());
         }
 
         if (user.getLastName() != null) {
-            user1.setLastName(user.getLastName());
+            oldUser.setLastName(user.getLastName());
         }
 
         if (user.getEmail() != null) {
-            user1.setEmail(user.getEmail());
+            oldUser.setEmail(user.getEmail());
         }
 
-        return user1;
+        User updatedUser = repository.save(oldUser);
+
+        return updatedUser;
     }
 
     @DeleteMapping("/users/{userId}")
-    public String deleteUser(@PathVariable("userId") Long id) {
+    public String deleteUser(@PathVariable("userId") Long id) throws Exception {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty()) {
+            throw new Exception("user not exist with userId: " + id);
+        }
+        repository.delete(user.get());
+
         return "user deleted succesfully with id: "+ id;
     }
 
