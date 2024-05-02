@@ -11,19 +11,20 @@ import java.util.Optional;
 @Service
 public class UserServiceImplementation implements UserService {
     @Autowired
-    private UserRepository repository;
+    UserRepository repository;
 
     @Override
     public User registerUser(User user) {
         User newUser = new User();
-        newUser.setId(user.getId());
+        //newUser.setId(user.getId());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         newUser.setGender(user.getGender());
 
-        return repository.save(newUser);
+        User savedUser = repository.save(newUser);
+        return savedUser;
     }
 
     @Override
@@ -37,31 +38,33 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User findUserByEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
-    @Override
-    public User followUser(Long userId, Long userId2) throws Exception {
-        User user = findUserById(userId);
-        User user2 = findUserById(userId2);
-
-        user2.getFollowers().add(user.getId());
-        user.getFollowings().add(user2.getId());
-
-        repository.save(user);
-        repository.save(user2);
-
+        User user = repository.findByEmail(email);
         return user;
     }
 
     @Override
+    public User followUser(Long userId1, Long userId2) throws Exception {
+        User user1 = findUserById(userId1);
+        User user2 = findUserById(userId2);
+
+        user2.getFollowers().add(user1.getId());//Agrega una lista de tipo Long al campo "followers".
+        user1.getFollowings().add(user2.getId());//Agrega una lista de tipo Long al campo "followings".
+
+        repository.save(user1);
+        repository.save(user2);
+
+        return user1;
+    }
+
+    @Override
     public User updateUser(User user, Long userId) throws Exception {
-        Optional<User> user1 = repository.findById(userId);
+        Optional<User> user1 = repository.findById(userId);//representa al usuario actual
         if (user1.isEmpty()) {
             throw new Exception("user not exist with userId: " + userId);
         }
 
         User oldUser = user1.get();
+
         if (user.getFirstName() != null) {
             oldUser.setFirstName(user.getFirstName());
         }
@@ -75,7 +78,7 @@ public class UserServiceImplementation implements UserService {
             oldUser.setGender(user.getGender());
         }
 
-        User updatedUser = repository.save(oldUser);
+        User updatedUser = repository.save(oldUser);//representa al usuario actualizado.
         return updatedUser;
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class PostController {
     @Autowired
-    private PostService service;
+    PostService service;
 
     @PostMapping("/posts/user/{userId}")
     public ResponseEntity<Post> createPost(@RequestBody Post post, @PathVariable Long userId) throws Exception {

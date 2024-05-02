@@ -15,17 +15,17 @@ import java.util.Optional;
 @Service
 public class PostServiceImplementation implements PostService {
     @Autowired
-    private PostRepository repository;
+    PostRepository repository;
     @Autowired
-    private UserService userService;
+    UserService userService;
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     public Post createNewPost(Post post, Long userId) throws Exception {
         User user = userService.findUserById(userId);
-        Post newPost = new Post();
 
+        Post newPost = new Post();
         newPost.setCaption(post.getCaption());
         newPost.setImage(post.getImage());
         LocalDateTime fechaHora = LocalDateTime.now();

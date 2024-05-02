@@ -25,17 +25,13 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     private String email;
+    @Column(name = "password", length = 510)
     private String password;
     private String gender;
     private List<Long> followers = new ArrayList<>();
     private List<Long> followings = new ArrayList<>();
 
-    //@OneToMany(mappedBy = "user")
-    //private List<Post> post;
-
     @JsonIgnore
     @ManyToMany
     private List<Post> savedPost = new ArrayList<>();
-    //private List<Post> savedPost;
-    //private List<Long> savedPost = new ArrayList<>();
 }
