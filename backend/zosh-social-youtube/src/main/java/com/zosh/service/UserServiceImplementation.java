@@ -1,5 +1,6 @@
 package com.zosh.service;
 
+import com.zosh.config.JwtProvider;
 import com.zosh.model.User;
 import com.zosh.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,18 +43,31 @@ public class UserServiceImplementation implements UserService {
         return user;
     }
 
+    //@Override
+    //public User followUser(Long userId1, Long userId2) throws Exception {
+    //    User user1 = findUserById(userId1);
+    //    User user2 = findUserById(userId2);
+
+    //    user2.getFollowers().add(user1.getId());//Agrega una lista de tipo Long al campo "followers".
+    //    user1.getFollowings().add(user2.getId());//Agrega una lista de tipo Long al campo "followings".
+
+    //    repository.save(user1);
+    //    repository.save(user2);
+
+    //    return user1;
+    //}
     @Override
-    public User followUser(Long userId1, Long userId2) throws Exception {
-        User user1 = findUserById(userId1);
+    public User followUser(Long reqUserId, Long userId2) throws Exception {
+        User reqUser = findUserById(reqUserId);
         User user2 = findUserById(userId2);
 
-        user2.getFollowers().add(user1.getId());//Agrega una lista de tipo Long al campo "followers".
-        user1.getFollowings().add(user2.getId());//Agrega una lista de tipo Long al campo "followings".
+        user2.getFollowers().add(reqUser.getId());//Agrega una lista de tipo Long al campo "followers".
+        reqUser.getFollowings().add(user2.getId());//Agrega una lista de tipo Long al campo "followings".
 
-        repository.save(user1);
+        repository.save(reqUser);
         repository.save(user2);
 
-        return user1;
+        return reqUser;
     }
 
     @Override
@@ -85,5 +99,13 @@ public class UserServiceImplementation implements UserService {
     @Override
     public List<User> searchUser(String query) {
         return repository.searchUser(query);
+    }
+
+    @Override
+    public User findUserByJwt(String jwt) {
+        String email = JwtProvider.getEmailFromJwtToken(jwt);//Obtiene el email por el token pasado como parametro.
+
+        User user = repository.findByEmail(email);
+        return user;
     }
 }
