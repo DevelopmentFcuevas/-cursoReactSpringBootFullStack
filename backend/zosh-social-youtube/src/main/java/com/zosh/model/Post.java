@@ -30,4 +30,7 @@ public class Post {
 
     @OneToMany
     private List<User> liked = new ArrayList<>();
+
+    @OneToMany
+    private List<Comment> comments = new ArrayList<>();
 }
