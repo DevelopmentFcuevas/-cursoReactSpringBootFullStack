@@ -73,7 +73,7 @@ public class UserController {
     //}
     @PutMapping("/api/users")
     public User updateUser(@RequestHeader("Authorization") String jwt,  @RequestBody User user) throws Exception {
-        User reqUser = service.findUserByJwt(jwt);//recupera un usuario por el token que se le pasa como parametro.
+        User reqUser = service.findUserByJwt(jwt);//recupera un usuario por el token que se le pasa como parámetro.
 
         User updatedUser = service.updateUser(user, reqUser.getId());
         return updatedUser;
