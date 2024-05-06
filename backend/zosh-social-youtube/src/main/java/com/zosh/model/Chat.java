@@ -29,4 +29,7 @@ public class Chat {
     @ManyToMany
     private List<User> users = new ArrayList<>();
 
+    @OneToMany(mappedBy = "chat")
+    private List<Message> messages = new ArrayList<>();
+
 }

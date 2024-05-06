@@ -1,6 +1,7 @@
 package com.zosh.service;
 
 import com.zosh.config.JwtProvider;
+import com.zosh.exceptions.UserException;
 import com.zosh.model.User;
 import com.zosh.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User findUserById(Long userId) throws Exception {
+    public User findUserById(Long userId) throws UserException {
         Optional<User> user = repository.findById(userId);
         if (user.isPresent()) {
             return user.get();
         }
-        throw new Exception("user not exist with userId: " + userId);
+        throw new UserException("user not exist with userId: " + userId);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class UserServiceImplementation implements UserService {
     //    return user1;
     //}
     @Override
-    public User followUser(Long reqUserId, Long userId2) throws Exception {
+    public User followUser(Long reqUserId, Long userId2) throws UserException {
         User reqUser = findUserById(reqUserId);
         User user2 = findUserById(userId2);
 
@@ -71,10 +72,10 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User updateUser(User user, Long userId) throws Exception {
+    public User updateUser(User user, Long userId) throws UserException {
         Optional<User> user1 = repository.findById(userId);//representa al usuario actual
         if (user1.isEmpty()) {
-            throw new Exception("user not exist with userId: " + userId);
+            throw new UserException("user not exist with userId: " + userId);
         }
 
         User oldUser = user1.get();

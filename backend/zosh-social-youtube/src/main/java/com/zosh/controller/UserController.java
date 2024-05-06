@@ -1,5 +1,6 @@
 package com.zosh.controller;
 
+import com.zosh.exceptions.UserException;
 import com.zosh.model.User;
 import com.zosh.repository.UserRepository;
 import com.zosh.service.UserService;
@@ -34,10 +35,10 @@ public class UserController {
     }*/
 
     @DeleteMapping("/users/{userId}")
-    public String deleteUser(@PathVariable("userId") Long id) throws Exception {
+    public String deleteUser(@PathVariable("userId") Long id) throws UserException {
         Optional<User> user = repository.findById(id);
         if (user.isEmpty()) {
-            throw new Exception("user not exist with userId: " + id);
+            throw new UserException("user not exist with userId: " + id);
         }
         repository.delete(user.get());
 
@@ -52,13 +53,13 @@ public class UserController {
     }
 
     @GetMapping("/api/users/{userId}")
-    public User getUserById(@PathVariable("userId") Long id) throws Exception {
+    public User getUserById(@PathVariable("userId") Long id) throws UserException {
         User user = service.findUserById(id);
         return user;
     }
 
     @PutMapping("/api/users")
-    public User updateUser(@RequestHeader("Authorization") String jwt,  @RequestBody User user) throws Exception {
+    public User updateUser(@RequestHeader("Authorization") String jwt,  @RequestBody User user) throws UserException {
         User reqUser = service.findUserByJwt(jwt);//recupera un usuario por el token que se le pasa como parámetro.
 
         User updatedUser = service.updateUser(user, reqUser.getId());
@@ -66,7 +67,7 @@ public class UserController {
     }
 
     @PutMapping("api/users/follow/{userId2}")
-    public User followUserHandler(@RequestHeader("Authorization") String jwt, @PathVariable Long userId2) throws Exception {
+    public User followUserHandler(@RequestHeader("Authorization") String jwt, @PathVariable Long userId2) throws UserException {
         User reqUser = service.findUserByJwt(jwt);
 
         User user = service.followUser(reqUser.getId(), userId2);
