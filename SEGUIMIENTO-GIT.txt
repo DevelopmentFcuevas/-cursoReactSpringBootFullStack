@@ -1,0 +1,127 @@
+- Creacion del Proyecto Spring Boot.
+- Creacion del paquete controller.
+- Creacion del Controlador HomeController.
+- Creacion del Controlador UserController.
+- Creacion del paquete model.
+- Creacion de la clase Entity User.
+-----------------------------------------------
+
+- Controller UserController, creacion de los metodos:
+ getUserById()
+ createUser()
+ deleteUser()
+-----------------------------------------------
+
+- Creacion del paquete Repository
+- Creacion del repostitory para User
+-----------------------------------------------
+
+- Controller UserController, modificacion de los metodos:
+ getUsers()
+ updateUser()
+ deleteUser()
+Se ajustaron todos estos metodos para realizar acciones ya en la base de datos con datos de prueba
+y verificar que funcionen bien todos.
+-----------------------------------------------
+
+- Creación del paquete service.
+- Creacion de las interfaces para definir los metodos de los service.
+-----------------------------------------------
+
+- Creación de la interface PostService
+- Creación de la entidad Post
+- Creación del repository Post
+
+- Creacion del controller PostController
+  Creacion del metodo createPost()
+  Creacion del metodo deletePost()
+  Creacion del metodo findPostByIdHandler()
+- Creacion del paquete Response
+Creacion de la Clase ApiResponse
+
+-----------------------------------------------
+
+get
+http://localhost:8080/api/users/search?query=francisco
+-----------------------------------------------
+
+Inicia la implementacion de Spring Security
+- Se agrega la dependencia en el pom.xml
+- Se crea el nuevo paquete "config" para iniciar la configuracion.
+- Dentro del paquete "config" se crea la Clase "AppConfig" donde se va a crear las configuraciones de la seguridad.
+- Se agregan mas dependencias en el pom.xml para el tema del JsonWebToken(JWT)
+- En el paquete "service", se crea la nueva Clase "CustomerUserDetailsService", para crear la configuracion del Spring Security.
+- En el paquete "config", se crea la Clase "JwtValidator()".
+- En el paquete "config", se crea la Clase "JwtConstant()".
+- En el paquete "config", se crea la Clase "JwtProvider()".
+- En el paquete "controller", se crea la Clase "AuthController()".
+- En el paquete "response", se crea la Clase "AuthResponse()".
+- En el paquete "request", se crea la Clase "LoginRequest()".
+
+Registra un nuevo usuario en la base de datos
+------------------------------------------------------------------------------
+
+https://www.pexels.com/es-es/video/asar-carne-1111421/
+https://www.pexels.com/es-es/video/un-cocinero-usando-un-wok-2620043/
+------------------------------------------------------------------------------
+
+
+
+
+
+frontend
+Configuracion Inicial del Proyecto:
+1) Se crea el proyecto React.
+2) Se crea dentro del proyecto React las carpetas para las paginas, que en realidad son componentes.
+pages/Authentication -> Authentication.jsx, Login.jsx, Register.jsx
+3) En el Componente principal(App.js) invocar a las paginas o componentes recien creados.
+4) Instalacion de librerias necesarias para el proyecto:
+https://mui.com/material-ui/getting-started/installation/
+$ npm install @mui/material @emotion/react @emotion/styled
+
+https://formik.org/docs/overview
+$ npm install formik --save
+
+$ npm i yup
+
+Inicia el desarrollo de "Authentication".
+
+direccion de la imagen del proyecto: https://cdn.pixabay.com/photo/2018/11/29/21/51/social-media-3846597_1280.png
+
+https://tailwindcss.com/docs/guides/create-react-app
+$ npm install -D tailwindcss
+$ npx tailwindcss init
+tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+5) Creacion del componente Login
+
+18--Va a iniciar Login
+
+6) Instalacion de Redux
+$ npm i redux-thunk (NO ME ANDUVO)
+$ npm install --save redux react-redux
+
+7) Instalacion de Axios
+$ npm i axios
+
+
+
+desde la aplicacion de tigo mitigo, asociar mi tarjeta
+datos de la tarjeta. Tiene un descuento de 35000 gs
+
+
