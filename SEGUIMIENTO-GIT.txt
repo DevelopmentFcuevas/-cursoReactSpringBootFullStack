@@ -1,3 +1,4 @@
+------- backend -------
 - Creacion del Proyecto Spring Boot.
 - Creacion del paquete controller.
 - Creacion del Controlador HomeController.
@@ -69,29 +70,65 @@ https://www.pexels.com/es-es/video/un-cocinero-usando-un-wok-2620043/
 
 
 
-frontend
-Configuracion Inicial del Proyecto:
+---- frontend ------
+
 1) Se crea el proyecto React.
-2) Se crea dentro del proyecto React las carpetas para las paginas, que en realidad son componentes.
-pages/Authentication -> Authentication.jsx, Login.jsx, Register.jsx
-3) En el Componente principal(App.js) invocar a las paginas o componentes recien creados.
-4) Instalacion de librerias necesarias para el proyecto:
+$ npx create-react-app .
+Al ejecutarse este comando crea un nuevo proyecto React en la carpeta actual en la que estamos situados por eso
+se pone el punto al final.
+Se va a crear y se van a descargar todas las dependencias que necesitamos para el proyecto.
+
+Despues de Crear nuestro proyecto, necesitaremos seguir instalando algunas dependencias como:
+mui(Para la interfaz de Usuario)
+formik(Para la validacion de los formularios)
+
+* MUI
+https://mui.com
+Biblioteca de componentes de React.
+MUI proporciona una biblioteca simple, personalizable y accesible de componentes de React. 
+Siga su propio sistema de diseño o comience con Material Design.
+Muévase más rápido con herramientas intuitivas de React UI
+MUI ofrece un conjunto completo de herramientas de interfaz de usuario gratuitas para ayudarle 
+a ofrecer nuevas funciones más rápido. Comience con Material UI, nuestra biblioteca de componentes 
+completamente equipada, o incorpore su propio sistema de diseño a nuestros componentes listos para producción.
+https://mui.com/
+https://mui.com/core/
+https://mui.com/material-ui/
+https://mui.com/material-ui/getting-started/
 https://mui.com/material-ui/getting-started/installation/
 $ npm install @mui/material @emotion/react @emotion/styled
 
+* Formik
+Formik es la biblioteca de formularios de código abierto más popular del mundo para React y React Native.
+¿Porque necesitamos formik?
+Usando formik podemos manejar nuestro formulario de una mejor manera. Podemos aplicar autenticacion,
+y muchas cosas mas usando esta libreria.
+https://formik.org/
 https://formik.org/docs/overview
 $ npm install formik --save
 
+* Yup
+Si hablamos de validar datos dentro de un formulario, existen muchas librerías que nos ayudan con esto, una 
+de las más populares es Yup.
+Yup es una biblioteca de validación de esquemas que facilita la definición y validación de la estructura y los 
+tipos de datos en aplicaciones de React. Proporciona una forma declarativa y fácil de definir reglas de 
+validación utilizando una amplia gama de métodos predefinidos y la capacidad de crear validaciones personalizadas.
+Al utilizar Yup, puedes asegurarte de que los datos ingresados en tus formularios cumplan con los requisitos 
+establecidos, mejorando la calidad y la integridad de la información.
 $ npm i yup
 
-Inicia el desarrollo de "Authentication".
-
-direccion de la imagen del proyecto: https://cdn.pixabay.com/photo/2018/11/29/21/51/social-media-3846597_1280.png
-
+* Tailwind CSS
+Tailwind CSS es un marco CSS de utilidad para crear rápidamente sitios web modernos sin tener que 
+abandonar su HTML.
+https://tailwindcss.com/docs/installation
+https://tailwindcss.com/docs/installation/framework-guides
 https://tailwindcss.com/docs/guides/create-react-app
 $ npm install -D tailwindcss
 $ npx tailwindcss init
-tailwind.config.js
+
+Configure your template paths
+Add the paths to all of your template files in your tailwind.config.js file.
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -103,10 +140,99 @@ module.exports = {
   plugins: [],
 }
 
-index.css
+Add the Tailwind directives to your CSS
+Add the @tailwind directives for each of Tailwind’s layers to your ./src/index.css file.
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* Direccion de la imagen del proyecto: https://cdn.pixabay.com/photo/2018/11/29/21/51/social-media-3846597_1280.png
+
+* Redux
+Redux es una librería JavaScript de código abierto para el manejo del estado de las aplicaciones.
+Redux es un contenedor predecible del estado de aplicaciones JavaScript. Esta tecnología nos permite, 
+a partir de una store global y un control del flujo de datos muy elevado, crear aplicaciones muy sólidas 
+y que por la arquitectura que ofrecen escalables a nivel de datos y volumen de la aplicación. 
+$ npm i redux-thunk (NO ME ANDUVO)
+$ npm install --save redux react-redux
+
+* Axios
+¿Qué es Axios en react?
+Axios es una librería de JavaScript que se utiliza para hacer solicitudes HTTP desde el navegador o 
+desde un servidor usando Node. js. Está basada en la simplicidad y una de sus características principales 
+es la facilidad de uso mientras ofrece funciones avanzadas para el manejo de solicitudes y respuestas en la API.
+$ npm i axios
+
+* React Router
+$ yarn add react-router-dom
+$ npm i react-router-dom
+
+
+- Para levantar el proyecto ejecutamos:
+$ npm start
+
+
+2) Configuracion Inicial del Proyecto:
+Creacion de carpetas o directorios necesarios para este proyecto:
+/pages
+Para crear y mantener todas las paginas de este proyecto dentro de este directorio.
+
+/src/pages/Authentication
+Para crear y mantener todos los archivos relacionados con la autenticacion del proyecto
+/src/pages/Authentication/Login.jsx
+Archivo para el inicio de Sesion.
+/src/pages/Authentication/Register.jsx
+/src/pages/Authentication/Authentication.jsx
+Archivo para el componente de autenticacion.
+
+3) Ahora lo que debemos hacer es llamar al componente "Authentication " desde nuestro archivo App.js--
+
+4) Primero lo que vamos a hacer es implementar la pagina frontal(login), despues de implementar esta
+interfaz, integraremos nuestra API(Spring Boot) con ella para que las funcionalidades de inicio de sesion
+y registro funcionen.
+() Programacion del componente 'Authentication.jsx'
+() Programacion del componente 'Login.jsx'
+() Programacion del componente 'Register.jsx'
+
+
+5) Redux
+/Redux
+Se crea esta carpeta o directorio para mantener todos los archivos de Redux.
+() Creacion y programacion del 'store'  src/Redux/store.js
+() "Envolver" en un '<Provider />' el Componente <App> [src/index.js]
+() Creacion de los archivos de configuracion del Redux   src/Redux/Auth/auth.action.js
+() Creacion del archivo src/Redux/Auth/auth.actionType.js
+() Creacion del archivo src/Redux/Auth/auth.reducer.js
+() Programacion del  src/Redux/Auth/auth.action.js
+() Programacion del  src/Redux/Auth/auth.reducer.js
+
+() Agregar dispatch en el Componente 'Login.jsx'.
+
+
+6) Routing - Implementar Paginacion en la Aplicacion
+() Agregar BrowserRoutes al index.js
+() Crear Message src/pages/Message/Message.jsx
+() Crear HomePage src/pages/HomePage/HomePage.jsx
+() Agregar ruteo en src/App.js
+
+
+
+6****) HomePage
+/src/pages/HomePage/HomePage.jsx
+
+21 vi mal
+
+
+
+
+
+
+
+
+
+
+
 
 5) Creacion del componente Login
 
@@ -123,5 +249,17 @@ $ npm i axios
 
 desde la aplicacion de tigo mitigo, asociar mi tarjeta
 datos de la tarjeta. Tiene un descuento de 35000 gs
+
+
+
+
+
+
+
+
+
+
+
+
 
 

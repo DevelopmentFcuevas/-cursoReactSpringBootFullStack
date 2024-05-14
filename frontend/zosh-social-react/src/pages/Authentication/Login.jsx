@@ -4,7 +4,15 @@ import React, { useState } from 'react'
 import * as Yup from 'yup'
 import { loginUserAction } from '../../Redux/Auth/auth.action'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
+// Formulario de Inicio de Sesion.
+
+// - initialValues: Utilizado para dar valores iniciales a los inputs.
+// - Formik: Propiedades de Formik utilizado para agregar el estado inicial de los valores, 
+// manejar el envio(Submit) del formulario y las validaciones(validationSchema) con la utilizacion
+// de la libreria 'Yup'.
+// - Form: utilizado para crear el formulario y los campos que va a contener el formulario.
 
 const initialValues = {email:"", password:""}
 
@@ -14,16 +22,23 @@ const validationSchema = {
 }
 
 const Login = () => {
+    // return (
+    //     <div>Componente Login => src/pages/Authentication/Login.jsx</div>
+    // )
+
     const [formValue, setFormValue] = useState();
 
     const dispatch = useDispatch();
 
+    //Usado para la navegacion del boton 'Register'.
+    const navigate = useNavigate();
+
     const handleSubmit = (values) => {
-        console.log("handle submit", values);
+        console.log("handle submit - Login", values);
+
+        //Invoca a la accion loginUserAction()
         dispatch(loginUserAction({data:values}))
     }
-
-
 
     return (
         <>
@@ -46,6 +61,10 @@ const Login = () => {
                     </div>
                 </Form>
             </Formik>
+            <div className='flex gap-2 items-center justify-center pt-5'>
+                <p>if you don't have account ?</p>
+                <Button onClick={() => navigate("/register")}>Register</Button>
+            </div>
         </>
     )
 }

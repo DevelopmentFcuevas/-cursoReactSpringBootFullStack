@@ -1,8 +1,8 @@
 import axios from "axios"
 import { API_BASE_URL } from "../../config/api"
-import { type } from "@testing-library/user-event/dist/type"
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./auth.actionType"
 
+//Accion que invoca al metodo 'signin()' del Backend del Spring Boot.
 export const loginUserAction = (loginData) => async(dispatch) => {
     
     dispatch({type:LOGIN_REQUEST})
@@ -15,7 +15,8 @@ export const loginUserAction = (loginData) => async(dispatch) => {
         }
 
         console.log("login success", data)
-
+        console.log("login message", data.message)
+        
         dispatch({type:LOGIN_SUCCESS, payload:data.jwt})
 
     } catch (error) {
@@ -25,7 +26,7 @@ export const loginUserAction = (loginData) => async(dispatch) => {
 }
 
 
-
+//Accion que invoca al metodo 'signup()' del Backend del Spring Boot.
 export const registerUserAction = (loginData) => async(dispatch) => {
     
     dispatch({type:LOGIN_REQUEST})

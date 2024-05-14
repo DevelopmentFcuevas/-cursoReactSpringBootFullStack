@@ -7,7 +7,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch } from 'react-redux';
 import { registerUserAction } from '../../Redux/Auth/auth.action';
+import { useNavigate } from 'react-router-dom';
 
+//Register Component.
 
 const initialValues = {firstName:"", lastName:"", email:"", password:"", gender:""}
 
@@ -17,20 +19,30 @@ const validationSchema = {
 }  
 
 const Register = () => {
-    //const [formValue, setFormValue] = useState();
+    // return (
+    //     <div>Componente Register => src/pages/Authentication/Register.jsx</div>
+    // )
 
-    const [gender, setGender] = useState("");
+    const [formValue, setFormValue] = useState();
+
+    const [gender, setGender] = useState(""); //valor inicial para el radioButton.
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
     
     const handleSubmit = (values) => {
+        //Cuando se hace submit del formulario, asigna lo que se obtuvo del useState:setGender() en la variable 'gender'.
         values.gender = gender
-        console.log("handle submit", values);
+        
+        console.log("handle submit - Register", values);
 
+        //Invoca a la accion registerUserAction()
         dispatch(registerUserAction({data:values}))
     }
 
     const handleChange = (event) => {
+        //Cuando cambia el valor del radioButton setea el valor seleccionado y cambia de estado en setGender().
         setGender(event.target.value);
     }
 
@@ -58,6 +70,7 @@ const Register = () => {
                             <Field as={TextField} name="password" placeholder="Password" type="password" variant="outlined" fullWidth />
                             <ErrorMessage name="password" component={"div"} className='text-red-500' />
                         </div>
+
                         <div>
                             <RadioGroup onChange={handleChange} aria-label="gender" defaultValue="female" name="gender">
                                 <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -65,12 +78,17 @@ const Register = () => {
                             </RadioGroup>
                             <ErrorMessage name="gender" component={"div"} className='text-red-500' />
                         </div>
+
                         <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" variant="contained" color="primary">
                             Register
                         </Button>
                     </div>
                 </Form>
             </Formik>
+            <div className='flex gap-2 items-center justify-center pt-5'>
+                <p>if you have already account ?</p>
+                <Button onClick={() => navigate("/login")}>Login</Button>
+            </div>
         </>
     )
 }
