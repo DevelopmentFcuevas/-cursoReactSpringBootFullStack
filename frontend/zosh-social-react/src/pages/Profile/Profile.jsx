@@ -6,7 +6,7 @@ const Profile = () => {
     const {id} = useParams()
 
     return (
-        <div>Profile - {id}</div>
+        <div>Componente Profile - {id} => src/pages/Profile/Profile.jsx</div>
     )
 }
 

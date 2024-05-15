@@ -168,6 +168,11 @@ $ npm i axios
 $ yarn add react-router-dom
 $ npm i react-router-dom
 
+* mui icons
+https://mui.com/material-ui/material-icons/?query=explore&selected=Explore
+$ npm install @mui/material @emotion/react @emotion/styled (CREO QUE NO ME ANDUVO)
+$ npm install @mui/icons-material
+
 
 - Para levantar el proyecto ejecutamos:
 $ npm start
@@ -215,13 +220,14 @@ Se crea esta carpeta o directorio para mantener todos los archivos de Redux.
 () Crear Message src/pages/Message/Message.jsx
 () Crear HomePage src/pages/HomePage/HomePage.jsx
 () Agregar ruteo en src/App.js
-
+() Programacion deHomePage src/pages/HomePage/HomePage.jsx
+() Crear MiddlePart src/components/MiddlePart/MiddlePart.jsx
+() Crear Componente Reels src/components/Reels/Reels.jsx
+() Crear Profile src/pages/Profile/Profile.jsx
 
 
 6****) HomePage
-/src/pages/HomePage/HomePage.jsx
-
-21 vi mal
+() Creacion de StoryCircle  src/components/MiddlePart/StoryCircle.jsx
 
 
 
@@ -234,16 +240,8 @@ Se crea esta carpeta o directorio para mantener todos los archivos de Redux.
 
 
 
-5) Creacion del componente Login
 
-18--Va a iniciar Login
 
-6) Instalacion de Redux
-$ npm i redux-thunk (NO ME ANDUVO)
-$ npm install --save redux react-redux
-
-7) Instalacion de Axios
-$ npm i axios
 
 
 
