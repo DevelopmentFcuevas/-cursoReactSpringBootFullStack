@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PostCard from '../../components/Post/PostCard';
 import UserReelCard from '../../components/Reels/UserReelCard';
+import { useSelector } from 'react-redux';
+import ProfileModal from './ProfileModal';
 
 const tabs = [
     {value:"post",name:"Post"},
@@ -21,12 +23,18 @@ const Profile = () => {
 
     const [value, setValue] = useState('post');
 
+    const {auth} = useSelector(store => store);
+
     // const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     //     setValue(newValue);
     // };
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const [open, setOpen] = useState(false);
+    const handleOpenProfileModal = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <Card className='my-10 w-[70%]'>
@@ -40,12 +48,12 @@ const Profile = () => {
                 <Avatar className='transform -translate-y-24' 
                     sx={{width:"10rem",height:"10rem"}} 
                     src='https://cdn.pixabay.com/photo/2017/09/18/05/23/certificate-2760734_1280.png' />
-                {true?<Button sx={{borderRadius:"20px"}} variant='outlined'>Edit Profile</Button>:<Button sx={{borderRadius:"20px"}} variant='outlined'>Follow</Button>}
+                {true?<Button onClick={handleOpenProfileModal} sx={{borderRadius:"20px"}} variant='outlined'>Edit Profile</Button>:<Button sx={{borderRadius:"20px"}} variant='outlined'>Follow</Button>}
             </div>
             <div className='p-5'>
                 <div>
-                    <h1 className='py-1 font-bold text-xl'>Code with zosh</h1>
-                    <p>@codewithzosh</p>
+                    <h1 className='py-1 font-bold text-xl'>{auth.user?.firstName +" "+auth.user.lastName}</h1>
+                    <p>@{auth.user?.firstName.toLowerCase() + "_"+ auth.user?.lastName.toLowerCase()}</p>
                 </div>
                 <div className='flex gap-5 items-center py-3'>
                     <span>41 post</span>
@@ -109,6 +117,11 @@ const Profile = () => {
                 </section>
 
             </div>
+            
+            {/* Boton para editar Profile */}
+            <section>
+                <ProfileModal open={open} handleClose={handleClose} />
+            </section>
         </Card>
     )
 }
