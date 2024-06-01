@@ -63,7 +63,8 @@ public class PostController {
         return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
     }
 
-    @GetMapping("/posts")
+    //@GetMapping("/posts")
+    @GetMapping("/api/posts")
     public ResponseEntity<List<Post>> findAllPost() {
         List<Post> posts = service.findAllPost();
         return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
@@ -88,7 +89,8 @@ public class PostController {
     //    Post post = service.likePost(postId, userId);
     //    return new ResponseEntity<Post>(post, HttpStatus.ACCEPTED);
     //}
-    @PutMapping("/posts/like/{postId}")
+    //@PutMapping("/posts/like/{postId}")
+    @PutMapping("/api/posts/like/{postId}")
     public ResponseEntity<Post> likePostHandler(@RequestHeader("Authorization") String jwt,
                                                 @PathVariable Long postId) throws Exception {
         User reqUser = userService.findUserByJwt(jwt);

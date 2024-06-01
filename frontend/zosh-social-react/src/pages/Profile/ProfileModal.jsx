@@ -1,16 +1,3 @@
-// import React from 'react'
-
-// const ProfileModal = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default ProfileModal
-// -----
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

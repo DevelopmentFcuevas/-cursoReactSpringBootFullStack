@@ -173,6 +173,11 @@ https://mui.com/material-ui/material-icons/?query=explore&selected=Explore
 $ npm install @mui/material @emotion/react @emotion/styled (CREO QUE NO ME ANDUVO)
 $ npm install @mui/icons-material
 
+* Cloudinary
+https://cloudinary.com/
+https://console.cloudinary.com/pm/c-f58148705eb4545b0f08d2cfd76521/getting-started
+dwgf54jtg
+
 
 - Para levantar el proyecto ejecutamos:
 $ npm start
@@ -232,7 +237,10 @@ Se crea esta carpeta o directorio para mantener todos los archivos de Redux.
 
 
 
+deuceseleccion@gmail.com
+ESPECIALISTA
 
+uploadToCloudniry.js
 
 
 
@@ -248,9 +256,13 @@ Se crea esta carpeta o directorio para mantener todos los archivos de Redux.
 desde la aplicacion de tigo mitigo, asociar mi tarjeta
 datos de la tarjeta. Tiene un descuento de 35000 gs
 
+isLikedByReqUser.js
 
 
 
+
+
+T.F85_iDgBvEK4*
 
 
 
